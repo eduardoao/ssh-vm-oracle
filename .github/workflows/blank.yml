@@ -17,13 +17,15 @@ jobs:
       run: npm install
     - name: Run build task
       run: npm run build --if-present
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@main
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.HOST }}
-          REMOTE_USER: ${{ secrets.USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: "/dist/, /node_modules/"
+    - name: Deploy to Server       
+    - uses: actions/download-artifact@v2
+      with:
+          name: build
+          path: build
+    - name: Create SSH key
+      run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.HOST }}" > ~/.ssh/known_hosts
+    - name: Deploy with rsync
+      run: rsync -rav --delete build/ user@host:/
