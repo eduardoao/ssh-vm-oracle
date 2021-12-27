@@ -11,7 +11,7 @@ jobs:
     steps:
 
     - name: Checkout main
-      uses: actions/checkout@main
+      uses: actions/checkout@v2
 
     - name: Build container image
       run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
