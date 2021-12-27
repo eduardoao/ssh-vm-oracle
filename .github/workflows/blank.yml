@@ -39,15 +39,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Post Deploy
+    - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
-            host: ${{ secrets.HOST }}
-            username: ubuntu #${{ secrets.USER }}
-            key: ${{ secrets.PRIVATE_KEY }}
-            port: 22
-            script: |
-              docker ps 
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: docker ps
 
     
 
