@@ -25,10 +25,10 @@ jobs:
       run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD cloud.canister.io:5000  
       
     - name: Tag image
-      run:  docker tag blog-latest  cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest    
+      run:  docker tag cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest  cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest    
 
     - name: Push image to Docker Hub
-      run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
+      run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle
   deploy:
     needs: build
     name: Deploy
