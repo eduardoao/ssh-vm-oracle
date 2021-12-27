@@ -16,7 +16,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build container image
-      run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blcloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
+      run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
   
     - name: Docker Login
       env:
