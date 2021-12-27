@@ -29,6 +29,9 @@ jobs:
 
     - name: Push image to Docker Hub
       run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
+    
+    - name: List image
+      run: docker images
   deploy:
     needs: build
     name: Deploy
