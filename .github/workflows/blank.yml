@@ -1,31 +1,46 @@
-name: Node CI
-
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
+
   build:
-
+    name: Build, push
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Node.js
-      uses: actions/setup-node@v1
+
+    - name: Checkout master
+      uses: actions/checkout@master
+
+    - name: Build container image
+      run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
+     
+
+    - name: Docker Login
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+    - name: Push image to Docker Hub
+      run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle
+
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@master    
       with:
-        node-version: '10.x'
-    - name: Install npm dependencies
-      run: npm install
-    - name: Run build task
-      run: npm run build --if-present
-    - name: Deploy to Server       
-    - uses: actions/download-artifact@v2
-      with:
-          name: build
-          path: build
-    - name: Create SSH key
-      run: |
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.HOST }}" > ~/.ssh/known_hosts
-    - name: Deploy with rsync
-      run: rsync -rav --delete build/ user@host:/
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}        
+        script: |
+          docker pull cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
+          docker kill blog_prod
+          docker rm blog_prod
+          docker run -d -p 4000:4000 --name blog_prod -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
