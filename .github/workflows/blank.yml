@@ -32,21 +32,36 @@ jobs:
     
     - name: List image
       run: docker images
+  
   deploy:
     needs: build
     name: Deploy
     runs-on: ubuntu-latest
     steps:
 
-    - name: executing remote ssh commands using key
-      uses: appleboy/ssh-action@master    
+    - name: Post Deploy
+      uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: ${{ secrets.PORT }}        
-        script: |
-          docker pull cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
-          docker kill blog_prod
-          docker rm blog_prod
-          docker run -d -p 4000:4000 --name blog_prod -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USER }}
+            key: ${{ secrets.PRIVATE_KEY }}
+            port: 22
+            script: |
+              docker ps 
+
+    
+
+# - name: executing remote ssh commands using key
+    #   uses: appleboy/ssh-action@master    
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USER }}
+    #     key: ${{ secrets.PRIVATE_KEY }}
+    #     port: ${{ secrets.PORT }}        
+    #     script: |
+    #       docker pull cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
+    #       docker kill blog_prod
+    #       docker rm blog_prod
+    #       docker run -d -p 4000:4000 --name blog_prod -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
+
+    
