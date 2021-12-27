@@ -15,8 +15,7 @@ jobs:
 
     - name: Build container image
       run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
-     
-
+  
     - name: Docker Login
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}

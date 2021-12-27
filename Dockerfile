@@ -15,5 +15,9 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+#EXPOSE 8080
 CMD [ "node", "server.js" ]
+
+# docker build . -t teste
+#docker run --name nodejs-app-demo -it -d -p 8080:8080 teste
+# Mais q merda
