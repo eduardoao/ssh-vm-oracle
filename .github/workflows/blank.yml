@@ -23,7 +23,9 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD cloud.canister.io:5000 | 
-        docker tag blog-latest  cloud.canister.io:5000/ssh-vm-oracle:blog-latest    
+      
+    - name: Tag image
+      run:  docker tag blog-latest  cloud.canister.io:5000/ssh-vm-oracle:blog-latest    
 
     - name: Push image to Docker Hub
       run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
