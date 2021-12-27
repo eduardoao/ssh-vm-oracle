@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Checkout main
+    - name: Checkout code
       uses: actions/checkout@v2
-
+      with:
+        fetch-depth: 0
+        
     - name: Build container image
       run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
   
