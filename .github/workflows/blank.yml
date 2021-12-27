@@ -16,7 +16,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build container image
-      run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest -f Dockerfile .
+      run: docker build -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blcloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latestog-latest -f Dockerfile .
   
     - name: Docker Login
       env:
@@ -28,8 +28,7 @@ jobs:
       run:  docker tag blog-latest  cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest    
 
     - name: Push image to Docker Hub
-      run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle
-
+      run: docker push cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
   deploy:
     needs: build
     name: Deploy
