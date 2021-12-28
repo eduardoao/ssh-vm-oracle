@@ -16,7 +16,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build container image
-      run: docker build -t blog-latest -f Dockerfile .
+      run: docker build -t blog-latest -f Dockerfile --platform linux/arm64/v8 .
   
     - name: Docker Login
        #env:
