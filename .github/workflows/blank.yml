@@ -29,8 +29,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-    #- name: Tag image
-    #  run:  docker tag blog-latest eduardoao/blog-latest    
+    - name: Tag image
+      run:  docker tag blog-latest eduardoao/blog-latest    
 
     - name: Push image to Docker Hub
       run: docker push eduardoao/blog-latest
