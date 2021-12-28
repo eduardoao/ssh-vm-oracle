@@ -49,8 +49,8 @@ jobs:
         script: |
           sudo chmod 666 /var/run/docker.sock
           docker pull cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest 
-          docker kill blog-latest
-          docker rm blog-latest
+          #docker kill blog-latest
+          #docker rm blog-latest
           docker run -d -p 4000:4000 --name blog_prod -t cloud.canister.io:5000/eduardoao/ssh-vm-oracle:blog-latest
           docker ps
 
