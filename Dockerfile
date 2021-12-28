@@ -1,4 +1,5 @@
-FROM node:16
+FROM resin/armv7hf-debian
+#node:16
 
 # Folder to work
 WORKDIR /usr/src/app
@@ -11,7 +12,8 @@ COPY src ./src
 
 #Mult Strategy Builder
 #Softy version
-FROM node:16
+FROM resin/armv7hf-debian
+#node:16
 
 ARG NODE_ENV
 
