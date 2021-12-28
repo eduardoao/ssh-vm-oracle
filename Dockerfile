@@ -1,5 +1,4 @@
-FROM arm64v8/node
-#node:16
+FROM node:16
 
 # Folder to work
 WORKDIR /usr/src/app
@@ -12,8 +11,7 @@ COPY src ./src
 
 #Mult Strategy Builder
 #Softy version
-FROM arm64v8/node
-#node:16
+FROM node:16
 
 ARG NODE_ENV
 
