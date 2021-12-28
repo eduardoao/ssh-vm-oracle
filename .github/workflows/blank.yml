@@ -65,7 +65,7 @@ jobs:
           docker pull eduardoao/blog-latest
           #docker kill blog-latest
           #docker rm blog-latest
-          docker run -d -p 4000:4000 --name blog-latest -t eduardoao/blog-latest
+          docker run -d -p 80:8080 --name blog-latest -t eduardoao/blog-latest
           docker ps
 
     
