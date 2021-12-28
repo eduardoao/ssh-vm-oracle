@@ -17,7 +17,7 @@ jobs:
         
         
     - name: Build container image
-      run: docker build -t blog-latest -f Dockerfile .
+      run: docker build -it blog-latest -f Dockerfile .
   
     - name: Docker Login
        #env:
