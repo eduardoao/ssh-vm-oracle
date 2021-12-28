@@ -46,7 +46,8 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
-        run: docker ps
+        script: | 
+          docker ps
 
     
 
