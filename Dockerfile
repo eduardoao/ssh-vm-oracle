@@ -1,4 +1,4 @@
-# FROM resin/armv7hf-debian as BUILDER
+# FROM #resin/armv7hf-debian as BUILDER
 # #node:16
 
 # # Folder to work
@@ -30,7 +30,8 @@
 # Mais q merda
 
 
-FROM arm64v8/node
+FROM node:16
+#arm64v8/node
 
 # Create app directory
 WORKDIR /usr/src/app
