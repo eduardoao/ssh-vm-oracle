@@ -1,22 +1,30 @@
-FROM node:16
+#Mult Strategy Builder
+# Full Version 
+FROM node:16 as BUILDER 
+LABEL maintainer="Eduardo Alcantara de Oliveira"
 
-# Create app directory
+# Folder to work
 WORKDIR /usr/src/app
 
 # Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package*.json ./
-
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
-COPY . .
+COPY src ./src
 
-#EXPOSE 8080
-CMD [ "node", "server.js" ]
+#Mult Strategy Builder
+#Softy version
+FROM node:16
+
+ARG NODE_ENV
+
+WORKDIR /usr/src/app
+# from previous stage(BUILDER)
+COPY --from=BUILDER . ./
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
 
 # docker build . -t teste
 #docker run --name nodejs-app-demo -it -d -p 8080:8080 teste
