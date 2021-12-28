@@ -46,7 +46,8 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
-        script: | 
+        script: |
+          sudo chmod 666 /var/run/docker.sock 
           docker ps
 
     
