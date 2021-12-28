@@ -16,7 +16,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build container image
-      run: docker build -t blog-latest -f Dockerfile --platform linux/arm64 .
+      run: docker buildx -t blog-latest -f Dockerfile .
   
     - name: Docker Login
        #env:
@@ -65,7 +65,7 @@ jobs:
           docker pull eduardoao/blog-latest
           docker kill blog-latest
           docker rm blog-latest
-          docker run -d -p 8080:8080 --name blog-latest --platform linux/arm64 -t eduardoao/blog-latest
+          docker run -d -p 8080:8080 --name blog-latest -t eduardoao/blog-latest
           docker ps
 
     
