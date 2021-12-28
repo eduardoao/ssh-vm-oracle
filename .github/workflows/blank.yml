@@ -29,10 +29,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Tag image
-      run:  docker tag blog-latest hub.docker.com/repository/docker/eduardoao/blog-latest    
+      run:  docker tag blog-latest eduardoao/blog-latest    
 
     - name: Push image to Docker Hub
-      run: docker push hub.docker.com/repository/docker/eduardoao/blog-latest
+      run: docker push eduardoao/blog-latest
     
     - name: List image
       run: docker images
@@ -62,10 +62,10 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           sudo chmod 666 /var/run/docker.sock
-          docker pull hub.docker.com/repository/docker/eduardoao/blog-latest
+          docker pull eduardoao/blog-latest
           #docker kill blog-latest
           #docker rm blog-latest
-          docker run -d -p 4000:4000 --name blog-latest -t hub.docker.com/repository/docker/eduardoao/blog-latest
+          docker run -d -p 4000:4000 --name blog-latest -t eduardoao/blog-latest
           docker ps
 
     
