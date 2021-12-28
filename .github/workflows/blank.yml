@@ -14,7 +14,8 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
+        
+        
     - name: Build container image
       run: docker build -t blog-latest -f Dockerfile .
   
@@ -65,7 +66,7 @@ jobs:
           docker pull eduardoao/blog-latest
           docker kill blog-latest
           docker rm blog-latest
-          docker run -d -p 80:8080 --name blog-latest -t eduardoao/blog-latest
+          docker run -d -p 8080:8080 --name blog-latest -t eduardoao/blog-latest
           docker ps
 
     

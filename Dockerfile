@@ -1,7 +1,5 @@
-#Mult Strategy Builder
-# Full Version 
-FROM node:16 as BUILDER 
-LABEL maintainer="Eduardo Alcantara de Oliveira"
+FROM arm64v8/node
+#node:16
 
 # Folder to work
 WORKDIR /usr/src/app
@@ -14,7 +12,8 @@ COPY src ./src
 
 #Mult Strategy Builder
 #Softy version
-FROM node:16
+FROM arm64v8/node
+#node:16
 
 ARG NODE_ENV
 
