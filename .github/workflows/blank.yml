@@ -64,8 +64,8 @@ jobs:
         script: |
           sudo chmod 666 /var/run/docker.sock
           docker pull eduardoao/blog-latest
-          docker kill blog-latest
-          docker rm blog-latest
+          docker kill blog-latest:latest
+          docker rm blog-latest:latest
           docker run -d -p 8080:8080 --name blog-latest -t eduardoao/blog-latest
           docker ps
 
