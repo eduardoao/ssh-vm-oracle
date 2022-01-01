@@ -15,16 +15,16 @@ jobs:
       with:
         fetch-depth: 0
         
-    - name: linux/arm/v7
-      uses: docker/setup-buildx-action@v1
-      id: buildx
-      with:
-          install: true     
-    - name: Build
-      run: |
-          docker build -t blog-latest -f Dockerfile . # will run buildx    
-    #- name: Build container image
-    #  run: docker build -t blog-latest -f Dockerfile .
+    #- name: linux/arm/v7
+    #  uses: docker/setup-buildx-action@v1
+    #  id: buildx
+    #  with:
+    #      install: true     
+    #- name: Build
+    #  run: |
+    #      docker build -t blog-latest -f Dockerfile . # will run buildx    
+    - name: Build container image
+      run: docker build -t blog-latest -f Dockerfile .
   
     - name: Docker Login
        #env:
@@ -36,8 +36,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-    #- name: Tag image
-    #  run:  docker tag blog-latest eduardoao/blog-latest    
+    - name: Tag image
+      run:  docker tag blog-latest eduardoao/blog-latest    
 
     - name: Push image to Docker Hub
       run: docker push eduardoao/blog-latest
@@ -71,6 +71,7 @@ jobs:
         script: |
           sudo chmod 666 /var/run/docker.sock
           docker pull eduardoao/blog-latest
+
           docker kill blog-latest
           docker rm blog-latest
           docker run -d -p 8080:8080 --name blog-latest -t eduardoao/blog-latest
