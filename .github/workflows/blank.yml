@@ -14,7 +14,7 @@ jobs:
         fetch-depth: 0
  
     - name: Build container image
-      run: docker build  --platform linux/amd64 --no-cache -t blog-latest -f Dockerfile . 
+      run: docker build  --platform linux/arm64/v8 -t blog-latest -f Dockerfile . 
   
     - name: Docker Login      
       uses: docker/login-action@v1
