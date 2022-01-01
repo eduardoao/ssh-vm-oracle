@@ -74,8 +74,8 @@ jobs:
 
           docker kill blog-latest
           docker rm blog-latest
-          docker run -d -p 8080:8080 --name blog-latest -t eduardoao/blog-latest
-          docker run --name mynginx1 -p 80:80 -d nginx
+          #docker run -d -p 8080:8080 --name blog-latest -t eduardoao/blog-latest
+          docker run --name mynginx1 -p 8080:8080 -d nginx
           docker ps
 
     
