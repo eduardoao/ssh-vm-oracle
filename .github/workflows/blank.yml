@@ -24,7 +24,7 @@ jobs:
     #  run: |
     #      docker build -t blog-latest -f Dockerfile . # will run buildx    
     - name: Build container image
-      run: docker build -t blog-latest -f Dockerfile .
+      run: docker build -t blog-latest:lastest -f Dockerfile .
   
     - name: Docker Login
        #env:
