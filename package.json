@@ -1,13 +1,33 @@
 {
-  "name": "docker_web_app",
+  "name": "article-node.js-rest-api-doc",
   "version": "1.0.0",
-  "description": "Node.js on Docker",
-  "author": "First Last <first.last@example.com>",
-  "main": "server.js",
+  "description": "documenting a rest api using swagger",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "swagger-node.js-rest-api-doc"
+  },
+  "author": "mwangikibui",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.22",
+    "nodemon": "^2.0.7",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "nodemonConfig": {
+    "ext": "js",
+    "ignore": [
+      "*.test.ts",
+      "db/*"
+    ],
+    "delay": 2
   }
 }
