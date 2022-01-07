@@ -1,8 +1,8 @@
 module.exports = {
     servers:[
         {
-            url: "http://localhost:4000", // url
-            description: "Local server", // name
+            url: "http://150.230.95.123:3000/", // url
+            description: "Oracle Server", // name
           },        
     ]
 }
