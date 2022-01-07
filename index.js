@@ -12,7 +12,7 @@ const adapter = new FileSync(join(__dirname,'..','db.json'));
 const db = low(adapter);
 db.defaults({ todos:[] }).write();    
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 // app configs.
 app.db = db;
