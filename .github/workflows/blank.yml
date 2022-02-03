@@ -54,7 +54,7 @@ jobs:
           sudo chmod 666 /var/run/docker.sock
           
           docker stop blog-latest
-          docker rm blog-latest
+          docker rm blog-latest:latest
           
           docker pull eduardoao/blog-latest          
           
