@@ -53,12 +53,12 @@ jobs:
         script: |
           sudo chmod 666 /var/run/docker.sock
           
-          docker stop eduardoao/blog-latest
+          docker stop blog-latest
           docker rm eduardoao/blog-latest
           
           docker pull eduardoao/blog-latest          
           
-          docker run -d -p 3000:3000 --name blog-latest -t eduardoao/blog-latest         
+          docker run -d -p 3000:3000 --name eduardoao/blog-latest -t eduardoao/blog-latest         
           docker ps
     
 
