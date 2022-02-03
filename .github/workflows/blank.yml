@@ -53,7 +53,9 @@ jobs:
         script: |
           sudo chmod 666 /var/run/docker.sock
           
-          docker stop blog-latest
+          docker stop  blog-latest
+          docker rmi -f blog-latest
+
           docker rm eduardoao/blog-latest:latest
           
           docker pull eduardoao/blog-latest          
