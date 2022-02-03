@@ -52,6 +52,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           sudo chmod 666 /var/run/docker.sock
+          
           docker pull eduardoao/blog-latest
 
           docker kill blog-latest
